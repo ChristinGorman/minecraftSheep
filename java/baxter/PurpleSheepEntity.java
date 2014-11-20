@@ -13,7 +13,7 @@ public class PurpleSheepEntity extends EntitySheep {
 
     @Override
     protected String getLivingSound() {
-        return "mob.zombie.say";
+        return "mob.villager.haggle";
     }
     
 	

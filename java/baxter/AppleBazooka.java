@@ -24,8 +24,8 @@ public class AppleBazooka extends ItemBow {
     public AppleBazooka() {
         this.maxStackSize = 1;
         this.setMaxDamage(384);
-        setUnlocalizedName("appleBazooka");
-        setTextureName("baxter:appleBazooka");
+        setUnlocalizedName("calvinStar");
+        setTextureName("baxter:calvinStar");
     }
 
     /**
@@ -78,7 +78,7 @@ public class AppleBazooka extends ItemBow {
         }
 
         stack.damageItem(1, player);
-        world.playSoundAtEntity(player, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+        world.playSoundAtEntity(player, "mob.pig.say", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
         flyingApple.canBePickedUp = 2;
 

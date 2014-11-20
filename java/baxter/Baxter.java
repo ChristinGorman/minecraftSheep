@@ -75,7 +75,7 @@ public class Baxter
         appleBazooka = new AppleBazooka().setCreativeTab(baxterTab);
         GameRegistry.registerItem(appleBazooka, "appleBazooka");
         
-        appleBullet = new Item().setTextureName("baxter:appleBullet");
+        appleBullet = new Item().setTextureName("baxter:calvinStar");
         
         int bulletId = EntityRegistry.findGlobalUniqueEntityId();
         EntityRegistry.registerGlobalEntityID(AppleBullet.class, "AppleBullet", bulletId);
