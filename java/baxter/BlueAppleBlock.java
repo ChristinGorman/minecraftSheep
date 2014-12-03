@@ -28,10 +28,4 @@ public class BlueAppleBlock extends Block {
 	    return Items.carrot;
 	}
 	
-	@Override
-	public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ,  int blockMeta) {
-	    System.out.println(String.format("M I L L A %d %d %d %d %f %f %f %d ", x,y,z,side,hitX,hitY,hitZ, blockMeta));
-	    return super.onBlockPlaced(world,  x,  y,  z, side, hitX,  hitY,  hitZ,  blockMeta);
-	}
-	
 }

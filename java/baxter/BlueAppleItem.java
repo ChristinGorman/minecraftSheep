@@ -22,13 +22,6 @@ public class BlueAppleItem extends Item {
 	    
 	}
 	
-	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
-    {
-		System.out.println("C A L V I N");
-		player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
-        return itemStack;
-    }
-	
 	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
 		return EnumAction.eat;
 	}

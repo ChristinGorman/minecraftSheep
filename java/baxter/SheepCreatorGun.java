@@ -15,15 +15,14 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class AppleBazooka extends ItemBow {
+public class SheepCreatorGun extends ItemBow {
     public static final String[] bowPullIconNameArray = new String[] { "pulling_2", "pulling_1", "pulling_0" };
     @SideOnly(Side.CLIENT)
     private IIcon[] iconArray;
     private static final String __OBFID = "CL_10006670";
 
-    public AppleBazooka() {
+    public SheepCreatorGun() {
         this.maxStackSize = 1;
-        this.setMaxDamage(384);
         setUnlocalizedName("calvinStar");
         setTextureName("baxter:calvinStar");
     }
@@ -41,49 +40,22 @@ public class AppleBazooka extends ItemBow {
         if (event.isCanceled()) {
             return;
         }
-        remaining = event.charge;
-
-        float f = (float) remaining / 20.0F;
-        f = (f * f + f * 2.0F) / 3.0F;
-
-        if ((double) f < 0.1D) {
-            return;
-        }
-
-        if (f > 1.0F) {
-            f = 1.0F;
-        }
-
-        System.out.println("Creating apple");
-        AppleBullet flyingApple = new AppleBullet(world, player, f * 2.0F);
-
-        if (f == 1.0F) {
-            flyingApple.setIsCritical(true);
-        }
-
-        int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, stack);
-
-        if (k > 0) {
-            flyingApple.setDamage(flyingApple.getDamage() + (double) k * 0.5D + 0.5D);
-        }
-
-        int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, stack);
-
-        if (l > 0) {
-            flyingApple.setKnockbackStrength(l);
-        }
-
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, stack) > 0) {
-            flyingApple.setFire(100);
-        }
-
-        stack.damageItem(1, player);
-        world.playSoundAtEntity(player, "mob.pig.say", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-
-        flyingApple.canBePickedUp = 2;
 
         if (!world.isRemote) {
-            world.spawnEntityInWorld(flyingApple);
+            float f = event.charge / 20f;
+            f = (f * f + f * 2) / 3;
+            
+            if (f < 0.1) {
+                return;
+            }
+            
+            if (f > 1) {
+                f = 1;
+            }
+            SheepCreatorBullet bullet = new SheepCreatorBullet(world, player, f * 2);
+            world.playSoundAtEntity(player, "mob.pig.say", 1.0F, (float)(1 / (itemRand.nextFloat() * 0.4 + 1.2) + f * 0.5));
+            bullet.canBePickedUp = 2;
+            world.spawnEntityInWorld(bullet);
         }
 
     }
@@ -122,7 +94,7 @@ public class AppleBazooka extends ItemBow {
             return event.result;
         }
 
-        if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(Baxter.appleBullet)) {
+        if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(Baxter.sheepCreatorBullet)) {
             par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         }
 
